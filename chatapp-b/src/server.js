@@ -35,12 +35,19 @@ app.use("/api/files", fileRoutes);
 app.use("/api/auth", authRoutes)
 app.use("/api/messages", messageRoutes)
 
-if (process.env.NODE_ENV === "production") {
-   app.use(express.static(path.join(__dirname, "../chatapp-f/dist")));
+// if (process.env.MODE_ENV=== "production") {
+//    app.use(express.static(path.join(__dirname, "../chatapp-f/dist")));
 
-   app.get("*", (req, res) => {
-res.sendFile(path. join(_dirname, " .. /chatapp-f", "dist", "index.html") );
-   })
+//    app.get("*", (req, res) => {
+// res.sendFile(path. join(_dirname, " .. /chatapp-f", "dist", "index.html") );
+//    })
+// }
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../chatapp-f/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../chatapp-f/dist", "index.html"));
+  });
 }
 
 server.listen(PORT, ()=> {
