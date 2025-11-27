@@ -39,7 +39,10 @@ if (process.env.MODE_ENV=== "production") {
    app.use(express.static(path.join(__dirname, "../frontend/build")));
 
    app.get("*", (req, res) => {
-res.sendFile(path. join(_dirname, " .. /frontend/build/index.html") );
+   if (!req.path.startsWith("/api")) {
+      res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+    }
+// res.sendFile(path. join(_dirname, " .. /frontend/build/index.html") );
    })
 }
 
