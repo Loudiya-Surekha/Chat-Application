@@ -39,7 +39,7 @@ if (process.env.MODE_ENV=== "production") {
    app.use(express.static(path.join(__dirname, "../frontend/build")));
 
    app.get("*", (req, res) => {
-res.sendFile(path. join(_dirname, " .. /frontend", "build", "index.html") );
+res.sendFile(path. join(_dirname, " .. /frontend/build/index.html") );
    })
 }
 
@@ -55,7 +55,7 @@ res.sendFile(path. join(_dirname, " .. /frontend", "build", "index.html") );
 
 server.listen(PORT, ()=> {
     console.log("Server is running on PORT:" + PORT);
-    connectDB(process.env.MONGODB_URI)
+    connectDB(process.env.MONGODB_URI)  
  })
 
  
