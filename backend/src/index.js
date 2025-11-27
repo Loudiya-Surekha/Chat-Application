@@ -35,30 +35,23 @@ app.use("/api/files", fileRoutes);
 app.use("/api/auth", authRoutes)
 app.use("/api/messages", messageRoutes)
 
-// if (process.env.MODE_ENV=== "production") {
-//    app.use(express.static(path.join(__dirname, "../chatapp-f/dist")));
+if (process.env.MODE_ENV=== "production") {
+   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-//    app.get("*", (req, res) => {
-// res.sendFile(path. join(_dirname, " .. /chatapp-f", "dist", "index.html") );
-//    })
-// }
+   app.get("*", (req, res) => {
+res.sendFile(path. join(_dirname, " .. /frontend", "dist", "index.html") );
+   })
+}
 
 // if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../frontend/dist")));
-//   app.get("/:path*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+//   const frontendPath = path.join(__dirname, "../frontend/dist");
+
+//   app.use(express.static(frontendPath));
+
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(frontendPath, "index.html"));
 //   });
 // }
-
-if (process.env.NODE_ENV === "production") {
-  const frontendPath = path.join(__dirname, "../frontend/dist");
-
-  app.use(express.static(frontendPath));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(frontendPath, "index.html"));
-  });
-}
 
 server.listen(PORT, ()=> {
     console.log("Server is running on PORT:" + PORT);
