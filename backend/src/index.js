@@ -30,16 +30,16 @@ const PORT = process.env.PORT || 5001;
 const __dirname = path.resolve();
 
 app.use("/uploads", express.static("uploads"));
-app.use("/api/files", fileRoutes);
+app.use("/files", fileRoutes);
 
-app.use("/api/auth", authRoutes)
-app.use("/api/messages", messageRoutes)
+app.use("/auth", authRoutes)
+app.use("/messages", messageRoutes)
 
 if (process.env.MODE_ENV=== "production") {
    app.use(express.static(path.join(__dirname, "../frontend/build")));
 
    app.get("*", (req, res) => {
-   if (!req.path.startsWith("/api")) {
+   if (!req.path.startsWith("/")) {
       res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
     }
 // res.sendFile(path. join(_dirname, " .. /frontend/build/index.html") );
