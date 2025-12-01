@@ -44,10 +44,9 @@ if (process.env.MODE_ENV=== "production") {
 //     }
 // // res.sendFile(path. join(_dirname, " .. /frontend/build/index.html") );
 //    })
-   app.get("/",(req,res)=>{
-   res.json("hello surekha")
-})
+
 }
+
 
 // if (process.env.NODE_ENV === "production") {
 //   const frontendPath = path.join(__dirname, "../frontend/dist");
@@ -58,7 +57,9 @@ if (process.env.MODE_ENV=== "production") {
 //     res.sendFile(path.join(frontendPath, "index.html"));
 //   });
 // }
-
+  app.get("/",(req,res)=>{
+   res.json("hello surekha")
+})
 server.listen(PORT, ()=> {
     console.log("Server is running on PORT:" + PORT);
     connectDB(process.env.MONGODB_URI)  
