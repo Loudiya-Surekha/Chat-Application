@@ -35,15 +35,15 @@ app.use("/files", fileRoutes);
 app.use("/auth", authRoutes)
 app.use("/messages", messageRoutes)
 
-if (process.env.MODE_ENV=== "production") {
+if (process.env.NODE_ENV=== "production") {
    app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-//    app.get("*", (req, res) => {
-//    if (!req.path.startsWith("/")) {
-//       res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
-//     }
-// // res.sendFile(path. join(_dirname, " .. /frontend/build/index.html") );
-//    })
+   app.get("*", (req, res) => {
+   if (!req.path.startsWith("/")) {
+      res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+    }
+// res.sendFile(path. join(_dirname, " .. /frontend/build/index.html") );
+   })
 
 }
 
@@ -57,9 +57,9 @@ if (process.env.MODE_ENV=== "production") {
 //     res.sendFile(path.join(frontendPath, "index.html"));
 //   });
 // }
-  app.get("/",(req,res)=>{
-   res.json("hello surekha")
-})
+//   app.get("/",(req,res)=>{
+//    res.json("hello surekha")
+// })
 server.listen(PORT, ()=> {
     console.log("Server is running on PORT:" + PORT);
     connectDB(process.env.MONGODB_URI)  
