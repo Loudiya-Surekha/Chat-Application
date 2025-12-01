@@ -39,11 +39,13 @@ export const signup = async (req, res) => {
         }
         else {
             res.status(400).json({ message: "Invalid user data" });
+            // res.status(400).json({ message: "User not found" });
         }
     }
     catch (error) {
       console.log("Error in signup controller", error.message);
       res.status(500).json({message: "Internal server error"});
+      // res.status(500).json({message: "User not found"});
     }
 };
 
@@ -51,12 +53,13 @@ export const login = async (req, res) => {
     const {email, password} = req.body
     try {
         const user = await User.findOne({email})
-        if(!User){
-            return res.status(400).json({message:"Invalid Credentials"})
-        }
+       
+        if(!user){
+            return res.status(400).json({message:"Invalid email address"})
+        } 
         const isPasswordCorrect= await bcrypt.compare(password, user.password)
         if(!isPasswordCorrect){
-            return res.status(400).json({message:"Invalid Credentials"})
+            return res.status(400).json({message:"Invalid password"})
         }
         generateToken(user._id, res)
         res.status(200).json({
@@ -68,7 +71,8 @@ export const login = async (req, res) => {
         })
     }catch(error){
       console.log("Error in login controller", error.message);
-      res.status(500).json({message: "Internal server error"});
+      res.status(500).json({message: " Invalid Credentials "});
+     
     }
 };
 
