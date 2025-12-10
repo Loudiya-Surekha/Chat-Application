@@ -8,6 +8,12 @@ file uploads, theming, and live user status tracking.
 
 ------------------------------------------------------------------------
 
+## 📺 Project Demo Video
+
+[![Chatty Demo Video](https://img.youtube.com/vi/7tfIcBrzgaQ/0.jpg)](https://youtu.be/7tfIcBrzgaQ)
+
+-----------------------------------------------------------------------------
+
 # 🏷️ Tech Stack Badges
 
 ![React](https://img.shields.io/badge/Frontend-React-blue)
